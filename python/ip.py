@@ -43,11 +43,9 @@ class Ip:
         low = self.prefArr[prefix][0]
         high = self.prefArr[prefix][1]
         cur, end_ip_num =low if low == high else self.search(low, high, intIP)
-        star_ip_num = end_ip_num - 255
-        if star_ip_num <= intIP and intIP <= end_ip_num+255:
-            return self.addrArr[cur]
-        else:
-            return "无数据"
+        return self.addrArr[cur]
+        
+            
 
     def search(self, low, high, k):
         print(self.endArr[:10])
