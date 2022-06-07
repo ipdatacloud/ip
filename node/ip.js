@@ -43,10 +43,9 @@ var Get = function (ip) {
 
 var Search = function (low, high, k) {
 	var M = 0;
-	var endipNum = 0
 	while (low <= high) {
 		var mid = Math.floor((low + high) / 2);
-		endipNum = endArr[mid];
+		var endipNum = endArr[mid];
 		if (endipNum >= k) {
 			M = mid;
 			if (mid === 0) {
@@ -57,11 +56,7 @@ var Search = function (low, high, k) {
 		else
 			low = mid + 1;
 	}
-	var startipNum = endipNum - 255
-	if (startipNum <= k && endipNum+255 >= k) {
-		return M
-	}
-	return 100000000;
+	return M
 }
 
 var ipToInt = function (ip) { return new Buffer(ip.split('.')).readUInt32BE(0) }
