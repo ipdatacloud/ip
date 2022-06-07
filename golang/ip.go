@@ -25,7 +25,7 @@ func GetObject() *IpInfo {
 	once.Do(func() {
 		obj = &IpInfo{}
 		var err error
-		obj, err = LoadFile("conf/quanqiu.dat")
+		obj, err = LoadFile("conf/ipdatacloud.dat")
 		if err != nil {
 			log.Fatal("the IP Dat loaded failed!")
 		}
@@ -90,10 +90,9 @@ func (p *IpInfo) Get(ip string) (string, error) {
 
 func (p *IpInfo) Search(low uint32, high uint32, k uint32) uint32 {
 	var M uint32 = 0
-	endipNum := uint32(0)
 	for low <= high {
 		mid := (low + high) / 2
-		endipNum = p.endArr[mid]
+		endipNum := p.endArr[mid]
 		if endipNum >= k {
 			M = mid
 			if mid == 0 {
@@ -104,11 +103,8 @@ func (p *IpInfo) Search(low uint32, high uint32, k uint32) uint32 {
 			low = mid + 1
 		}
 	}
-	startipNum := endipNum - 255
-	if startipNum <= k && endipNum+255 >= k {
-		return M
-	}
-	return 100000000
+
+	return M
 }
 
 func ipToInt(ipstr string) (uint32, error) {
