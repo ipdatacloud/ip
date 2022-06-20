@@ -1,5 +1,7 @@
 <?php
-
+/* 
+PHP Version 7+
+*/
 class Ip  {
   
     private $prefStart=array(); 
